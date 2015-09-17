@@ -29,7 +29,9 @@ public class Attraction : MonoBehaviour {
 		Gravity (player);
 
 		for (int i = 0; i < planets.Length; i++) {
+			if (planets[i] != gameObject) {
 			Gravity (planets[i]);
+			}
 		}
 	}
 }
