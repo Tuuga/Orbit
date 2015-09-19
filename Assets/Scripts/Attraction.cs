@@ -4,14 +4,15 @@ using System.Collections;
 public class Attraction : MonoBehaviour {
 
 	public float mass;
-	float strength;
+	public float strength;
 	
-	public void Gravity(GameObject g) {
+	void Gravity(GameObject g) {
 
 		strength = mass / Vector2.Distance (g.transform.position, transform.position);
 
 		Vector3 direction = transform.position - g.transform.position;
 		g.GetComponent<Rigidbody>().AddForce(strength * direction);
+		Debug.DrawLine (transform.position, g.transform.position);
 	}
 
 	void OnTriggerStay (Collider c) {
