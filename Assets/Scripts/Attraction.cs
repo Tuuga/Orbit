@@ -3,35 +3,22 @@ using System.Collections;
 
 public class Attraction : MonoBehaviour {
 
-	GameObject player;
-	GameObject[] planets;
-
-	public float mass = 5.0f;
-	float strength;
-
-	void Start () {
-
-		player = GameObject.Find ("Player");
-		planets = GameObject.FindGameObjectsWithTag("Planet");
-		strength = mass;
-	}
-
+	public float mass;
+	public float strength;
+	
 	void Gravity(GameObject g) {
 
-		mass = strength / Vector2.Distance (g.transform.position, transform.position);
+		strength = mass / Vector2.Distance (g.transform.position, transform.position);
 
 		Vector3 direction = transform.position - g.transform.position;
-		g.GetComponent<Rigidbody>().AddForce(mass * direction);
+		g.GetComponent<Rigidbody>().AddForce(strength * direction);
+		Debug.DrawLine (transform.position, g.transform.position);
 	}
-	
-	void FixedUpdate () {
 
-		Gravity (player);
+	void OnTriggerStay (Collider c) {
 
-		for (int i = 0; i < planets.Length; i++) {
-			if (planets[i] != gameObject) {
-			Gravity (planets[i]);
-			}
+		if (c.GetComponent<Rigidbody>() != null) {
+			Gravity (c.gameObject);
 		}
 	}
 }
