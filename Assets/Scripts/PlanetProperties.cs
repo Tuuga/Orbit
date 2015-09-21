@@ -33,8 +33,11 @@ public class PlanetProperties : MonoBehaviour {
 		}
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		if (orbiting) {
+
+//			rb.AddForce ((transform.position - orbitingAround.transform.position) * orbitingAround.GetComponent<Attraction>().strength);
+
 			currentDist = Vector2.Distance(transform.position, orbitingAround.transform.position);
 			if (maxDist < currentDist) {
 				maxDist = currentDist;
