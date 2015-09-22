@@ -21,10 +21,12 @@ public class Attraction : MonoBehaviour {
 	void Gravity(GameObject g) {
 
 		rb = g.GetComponent<Rigidbody> ();
+		
 		if (g.transform.FindChild ("GravitySource") != null) {
 			gs = g.transform.FindChild("GravitySource").gameObject;
 			mass2 = gs.GetComponent<Attraction>().mass1;
 		}
+
 		if (gs != null) {
 			force = (mass1 * mass2) / Mathf.Sqrt (Vector2.Distance (g.transform.position, transform.position));
 		} else {
