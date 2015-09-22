@@ -5,8 +5,8 @@ public class PlanetProperties : MonoBehaviour {
 	
 	public bool orbiting;
 	public GameObject orbitingAround;
-	public float startForce;
 	public float divider;
+	public float startForce;
 
 	//public for debug
 	public float startDist;

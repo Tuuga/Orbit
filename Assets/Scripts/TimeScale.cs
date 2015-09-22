@@ -4,6 +4,7 @@ using System.Collections;
 public class TimeScale : MonoBehaviour {
 
 	public float scale = 1;
+	public bool drawDebugRays;
 
 	void Update () {
 	

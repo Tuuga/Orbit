@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour {
 
 	public float pushStr;
 
+	//enum for controls
+
 	Rigidbody rb;
 	
 	void Start () {
@@ -12,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
 
 		Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitPoint;
