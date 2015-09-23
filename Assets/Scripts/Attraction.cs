@@ -26,18 +26,17 @@ public class Attraction : MonoBehaviour {
 			gs = g.transform.FindChild("GravitySource").gameObject;
 			mass2 = gs.GetComponent<Attraction>().mass1;
 		}
-
+        
 		if (gs != null) {
 			force = (mass1 * mass2) / Mathf.Sqrt (Vector2.Distance (g.transform.position, transform.position));
 		} else {
-			force = mass1 / Mathf.Sqrt (Vector2.Distance (g.transform.position, transform.position));
+			//force = mass1 / Mathf.Sqrt (Vector2.Distance (g.transform.position, transform.position));
 		}
 
 		direction = transform.position - g.transform.position;
-		rb.AddForce(force * direction);
+		rb.AddForce(force * direction.normalized);
 
 		//Debug lines and Angle
-
 		if (drawDebugLines) {
 			Debug.DrawLine (g.transform.position, rb.velocity, Color.red);
 			Debug.DrawLine (g.transform.position, direction, Color.black);
@@ -53,7 +52,7 @@ public class Attraction : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider c) {
-
+        Debug.Log(c.name + ": trigger");
 		if (c.GetComponent<Rigidbody>() != null) {
 			Gravity (c.gameObject);
 		}

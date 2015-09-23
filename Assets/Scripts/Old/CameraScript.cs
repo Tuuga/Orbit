@@ -5,6 +5,8 @@ public class CameraScript : MonoBehaviour {
 
 	GameObject player;
 	Vector3 cameraPos;
+    public float y;
+
 
 	void Start () {
 		player = GameObject.Find("Player");
@@ -14,7 +16,7 @@ public class CameraScript : MonoBehaviour {
 	
 		cameraPos = player.transform.position;
 		cameraPos.z = -7;
-		cameraPos.y = player.transform.position.y + 3;
+		cameraPos.y = player.transform.position.y + y;
 		transform.position = cameraPos;
 
 	}

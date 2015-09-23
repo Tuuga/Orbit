@@ -36,8 +36,6 @@ public class PlanetProperties : MonoBehaviour {
 	void FixedUpdate () {
 		if (orbiting) {
 
-//			rb.AddForce ((transform.position - orbitingAround.transform.position) * orbitingAround.GetComponent<Attraction>().strength);
-
 			currentDist = Vector2.Distance(transform.position, orbitingAround.transform.position);
 			if (maxDist < currentDist) {
 				maxDist = currentDist;
@@ -48,4 +46,8 @@ public class PlanetProperties : MonoBehaviour {
 			avarageDist = (minDist + maxDist) / 2;
 		}
 	}
+
+    void OnTriggerStay(Collider c) {
+        //Workaround for OnTriggerStay not working on child objects
+    }
 }
