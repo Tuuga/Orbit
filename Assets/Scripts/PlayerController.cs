@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float pushStr;
+	public float mouseSensitivity;
 	public bool boost;
 	public bool vertical;
 	public bool turn;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+		Debug.Log (Camera.main.pixelWidth);
 	}
 
 	void FixedUpdate () {
@@ -46,16 +48,16 @@ public class PlayerController : MonoBehaviour {
 
 		//WASD Controls
 		if (Input.GetKey (KeyCode.W)) {
-			rb.AddForce (pushStr * Vector2.up, ForceMode.Impulse);
+			rb.AddForce (pushStr * Vector2.up);
 		}
 		if (Input.GetKey (KeyCode.A)) {
-			rb.AddForce (pushStr * Vector2.left, ForceMode.Impulse);
+			rb.AddForce (pushStr * Vector2.left);
 		}
 		if (Input.GetKey (KeyCode.S)) {
-			rb.AddForce (pushStr * Vector2.down, ForceMode.Impulse);
+			rb.AddForce (pushStr * Vector2.down);
 		}
 		if (Input.GetKey (KeyCode.D)) {
-			rb.AddForce (pushStr * Vector2.right, ForceMode.Impulse);
+			rb.AddForce (pushStr * Vector2.right);
 		}
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0f);
 	}
@@ -67,24 +69,13 @@ public class PlayerController : MonoBehaviour {
 			mouseCurrent = Input.mousePosition;
 			if (Input.GetKey(KeyCode.Mouse0)) {
 				mouseDelta = mouseCurrent - mouseLast;
+				transform.eulerAngles += new Vector3 (0, 0, mouseDelta.x * mouseSensitivity);
 			}
-
-			transform.eulerAngles += new Vector3 (0, 0, mouseDelta.x);
-
 			mouseLast = mouseCurrent;
 		}
 
 		if (Input.touchSupported == true) {
 			transform.eulerAngles += new Vector3 (0, 0, Input.GetTouch(0).deltaPosition.x);
 		}
-	}
-
-	void OnTriggerStay (Collider c) {
-
-		//If input g
-			//stay in current radius and orbit at same speed
-		//if input g released
-			//continue forward with same velocity
-
 	}
 }
