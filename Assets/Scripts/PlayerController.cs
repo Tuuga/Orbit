@@ -14,9 +14,8 @@ public class PlayerController : MonoBehaviour {
 	Vector2 mouseLast;
 	Rigidbody rb;
 	
-	void Start () {
+	void Awake () {
 		rb = GetComponent<Rigidbody> ();
-		Debug.Log (Camera.main.pixelWidth);
 	}
 
 	void FixedUpdate () {
