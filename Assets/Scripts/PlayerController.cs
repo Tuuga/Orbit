@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public bool boost;
 	public bool vertical;
 	public bool turn;
+    public bool cardinal;
 
     float timer;
     Vector3 direction;
@@ -18,68 +19,69 @@ public class PlayerController : MonoBehaviour {
 	
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
+        transform.LookAt(Vector3.up, Vector3.back);
 	}
 
-	void FixedUpdate () {
+    void FixedUpdate()
+    {
 
-		Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit hitPoint;
-		int layerMask = 1 << 8;
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitPoint;
+        int layerMask = 1 << 8;
 
-		//Aim at mouse position in world space
-		if (Physics.Raycast (camRay, out hitPoint, 100f,layerMask)) {
+        //Aim at mouse position in world space
+        if (Physics.Raycast(camRay, out hitPoint, 100f, layerMask))
+        {
 
-			if (boost == true) {
+            if (boost == true)
+            {
                 direction = hitPoint.point;
-                
+
                 /* Old boost
                 direction = hitPoint.point - transform.position;
 				transform.LookAt (direction, Vector3.back);
 				rb.AddForce (pushStr * direction, ForceMode.Impulse);
                 */
-			}
-		}
-
-		//Stop
-		if (Input.GetKey(KeyCode.Mouse1)) {
-			rb.isKinematic = true;
-		} else {
-			rb.isKinematic = false;
-		}
-
-		if (turn == true) {
-			rb.AddForce (transform.up * pushStr);
-		}
-
-		//WASD Controls
-		if (Input.GetKey (KeyCode.W)) {
-			rb.AddForce (pushStr * Vector2.up);
-		}
-		if (Input.GetKey (KeyCode.A)) {
-			rb.AddForce (pushStr * Vector2.left);
-		}
-		if (Input.GetKey (KeyCode.S)) {
-			rb.AddForce (pushStr * Vector2.down);
-		}
-		if (Input.GetKey (KeyCode.D)) {
-			rb.AddForce (pushStr * Vector2.right);
-		}
-		transform.position = new Vector3 (transform.position.x, transform.position.y, 0f);
-	}
-
-    void Controls() {
-        
-        //Boost (power by time held)
-        if (Input.GetKeyDown (KeyCode.Mouse0)) {
-            timer += Time.deltaTime;
-            Debug.Log(timer);
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0)) {
-            rb.AddForce (timer * pushStr * direction, ForceMode.Impulse);
-            timer = 0;
+        //Stop
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
+
+        if (turn == true)
+        {
+            rb.AddForce(transform.forward * pushStr);
+        }
+
+        //WASD Controls
+        if (cardinal) {
+            if (Input.GetKey(KeyCode.W))
+            {
+                rb.AddForce(pushStr * Vector2.up);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb.AddForce(pushStr * Vector2.left);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb.AddForce(pushStr * Vector2.down);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb.AddForce(pushStr * Vector2.right);
+            }
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         }
     }
+
 	void Update () {
 
         if (boost == true) {
@@ -99,6 +101,23 @@ public class PlayerController : MonoBehaviour {
 
         if (turn == true) {
 
+            if (Input.GetKey(KeyCode.A)) {
+                transform.rotation *= Quaternion.Euler (Vector3.down);
+            }
+
+            if (Input.GetKey(KeyCode.D)) {
+                transform.rotation *= Quaternion.Euler(Vector3.up);
+            }
+
+            if (Input.GetKey(KeyCode.W)) {
+                pushStr += Time.deltaTime;
+            }
+
+            if (Input.GetKey(KeyCode.S)) {
+                pushStr -= Time.deltaTime;
+            }
+
+            /*      Old Turn
 			mouseCurrent = Input.mousePosition;
 			if (Input.GetKey(KeyCode.Mouse0)) {
 				mouseDelta = mouseCurrent - mouseLast;
@@ -110,5 +129,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.touchSupported == true) {
 			transform.eulerAngles += new Vector3 (0, 0, Input.GetTouch(0).deltaPosition.x);
 		}
+        */
+        }
 	}
 }
