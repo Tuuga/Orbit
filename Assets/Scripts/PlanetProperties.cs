@@ -5,6 +5,7 @@ public class PlanetProperties : MonoBehaviour {
 	
 	public bool orbiting;
 	public GameObject orbitingAround;
+    public float orbitAngle;
 
 	//public for debug
 	public float startDist;
@@ -21,6 +22,14 @@ public class PlanetProperties : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 	}
 
+    void Start() {
+
+        if (orbiting) {
+            Orbit();
+        }
+        
+    }
+
     void Update() {
 
         if (Input.GetKeyDown(KeyCode.G)) {
@@ -34,7 +43,7 @@ public class PlanetProperties : MonoBehaviour {
 
         Vector3 dir = (orbitingAround.transform.position - transform.position).normalized;
         startDist = Vector2.Distance(transform.position, orbitingAround.transform.position);
-        Vector3 newDir = Quaternion.AngleAxis(90, Vector3.forward) * dir * Mathf.Sqrt(mass / startDist);
+        Vector3 newDir = Quaternion.AngleAxis(orbitAngle, Vector3.forward) * dir * Mathf.Sqrt(mass / startDist);
 
         rb.velocity = newDir;
 
