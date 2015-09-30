@@ -22,60 +22,45 @@ public class PlayerController : MonoBehaviour {
         transform.LookAt(Vector3.up, Vector3.back);
 	}
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
 
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitPoint;
         int layerMask = 1 << 8;
 
         //Aim at mouse position in world space
-        if (Physics.Raycast(camRay, out hitPoint, 100f, layerMask))
-        {
-
-            if (boost == true)
-            {
+        if (Physics.Raycast(camRay, out hitPoint, 100f, layerMask)) {
+            if (boost == true) {
                 direction = hitPoint.point;
-
-                /* Old boost
-                direction = hitPoint.point - transform.position;
-				transform.LookAt (direction, Vector3.back);
-				rb.AddForce (pushStr * direction, ForceMode.Impulse);
-                */
             }
         }
 
         //Stop
-        if (Input.GetKey(KeyCode.Mouse1))
-        {
+        if (Input.GetKey(KeyCode.Mouse1)) {
             rb.isKinematic = true;
         }
-        else
-        {
+        else {
             rb.isKinematic = false;
         }
 
-        if (turn == true)
-        {
+
+        //Turn Controls (moves ship forward)
+        if (turn == true) {
             rb.AddForce(transform.forward * pushStr);
         }
 
         //WASD Controls
         if (cardinal) {
-            if (Input.GetKey(KeyCode.W))
-            {
+            if (Input.GetKey(KeyCode.W)) {
                 rb.AddForce(pushStr * Vector2.up);
             }
-            if (Input.GetKey(KeyCode.A))
-            {
+            if (Input.GetKey(KeyCode.A)) {
                 rb.AddForce(pushStr * Vector2.left);
             }
-            if (Input.GetKey(KeyCode.S))
-            {
+            if (Input.GetKey(KeyCode.S)) {
                 rb.AddForce(pushStr * Vector2.down);
             }
-            if (Input.GetKey(KeyCode.D))
-            {
+            if (Input.GetKey(KeyCode.D)) {
                 rb.AddForce(pushStr * Vector2.right);
             }
             transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
@@ -84,8 +69,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
+        //Boost (power by time held)
         if (boost == true) {
-            //Boost (power by time held)
             if (Input.GetKey(KeyCode.Mouse0)) {
                 transform.LookAt(direction, Vector3.back);
                 timer += Time.deltaTime;
@@ -99,6 +84,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        //Turn Controls
         if (turn == true) {
 
             if (Input.GetKey(KeyCode.A)) {
@@ -116,20 +102,6 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKey(KeyCode.S)) {
                 pushStr -= Time.deltaTime;
             }
-
-            /*      Old Turn
-			mouseCurrent = Input.mousePosition;
-			if (Input.GetKey(KeyCode.Mouse0)) {
-				mouseDelta = mouseCurrent - mouseLast;
-				transform.eulerAngles += new Vector3 (0, 0, mouseDelta.x * mouseSensitivity);
-			}
-			mouseLast = mouseCurrent;
-		}
-
-		if (Input.touchSupported == true) {
-			transform.eulerAngles += new Vector3 (0, 0, Input.GetTouch(0).deltaPosition.x);
-		}
-        */
         }
 	}
 }
