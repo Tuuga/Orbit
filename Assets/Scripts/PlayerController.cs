@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public bool vertical;
 	public bool turn;
     public bool cardinal;
+    public bool android;
 
     float timer;
     Vector3 direction;
@@ -116,20 +117,18 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKey(KeyCode.S)) {
                 pushStr -= Time.deltaTime;
             }
-
-            /*      Old Turn
-			mouseCurrent = Input.mousePosition;
-			if (Input.GetKey(KeyCode.Mouse0)) {
-				mouseDelta = mouseCurrent - mouseLast;
-				transform.eulerAngles += new Vector3 (0, 0, mouseDelta.x * mouseSensitivity);
-			}
-			mouseLast = mouseCurrent;
-		}
-
-		if (Input.touchSupported == true) {
-			transform.eulerAngles += new Vector3 (0, 0, Input.GetTouch(0).deltaPosition.x);
-		}
-        */
         }
-	}
+
+        if (android) {
+
+            Ray touchRay = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hitPoint;
+            int layerMask = 1 << 8;
+
+            //Aim at touch position in world space
+            if (Physics.Raycast(touchRay, out hitPoint, 100f, layerMask)) {
+                transform.LookAt(hitPoint.point, Vector3.back);
+            }
+        }
+    }
 }
