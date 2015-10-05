@@ -20,7 +20,10 @@ public class PlanetProperties : MonoBehaviour {
 	void Awake () {
 
 		rb = GetComponent<Rigidbody>();
-        orbitingAround = GameObject.Find("Star").transform.FindChild("GravitySource").gameObject;
+
+		if (GameObject.Find("Star") != null) {
+			orbitingAround = GameObject.Find("Star").transform.FindChild("GravitySource").gameObject;
+		}
 	}
 
     void Start() {

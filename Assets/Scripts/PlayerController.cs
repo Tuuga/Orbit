@@ -3,8 +3,10 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public float pushStr;
-
+	//Strength of the forward throttle
+	public float maxSpeed;
+	public float startSpeed;
+	public float turnSpeed;
 	public bool pc;
 	public bool android;
 
@@ -15,39 +17,45 @@ public class PlayerController : MonoBehaviour {
 		transform.LookAt(Vector3.up, Vector3.back);
 	}
 
+	void Start () {
+		rb.AddForce(Vector3.up * startSpeed, ForceMode.Impulse);
+	}
+
 	void FixedUpdate () {
 
-		//Stop
+		//Right click to stop the ship
 		if (Input.GetKey(KeyCode.Mouse1)) {
 			rb.isKinematic = true;
 		} else {
 			rb.isKinematic = false;
 		}
-
-		rb.AddForce(transform.forward * pushStr);
+		//Moves the ship forward constantly
+		rb.AddForce(transform.forward * maxSpeed);
+		Debug.Log(rb.velocity.magnitude);
 	}
 
 	void Update () {
 
+		//PC inputs
 		if (pc == true) {
 
+			//A and D for turning
 			if (Input.GetKey(KeyCode.A)) {
-				transform.rotation *= Quaternion.Euler(Vector3.down);
+				transform.rotation *= Quaternion.Euler(Vector3.down * turnSpeed);
 			}
-
 			if (Input.GetKey(KeyCode.D)) {
-				transform.rotation *= Quaternion.Euler(Vector3.up);
+				transform.rotation *= Quaternion.Euler(Vector3.up * turnSpeed);
 			}
-
+			//W and S for throttle
 			if (Input.GetKey(KeyCode.W)) {
-				pushStr += Time.deltaTime;
+				maxSpeed += Time.deltaTime;
 			}
-
 			if (Input.GetKey(KeyCode.S)) {
-				pushStr -= Time.deltaTime;
+				maxSpeed -= Time.deltaTime;
 			}
 		}
 
+		//Android Inputs
 		if (android) {
 
 			if (Input.touchCount > 0) {

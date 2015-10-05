@@ -4,7 +4,6 @@ using System.Collections;
 
 public class AndroidTest : MonoBehaviour {
 
-    public GameObject planet;
 	public GameObject player;
 	public Text text;
 	string debugText;
