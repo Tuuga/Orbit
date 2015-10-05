@@ -5,11 +5,12 @@ using System.Collections;
 public class AndroidTest : MonoBehaviour {
 
     public GameObject planet;
+	public GameObject player;
 	public Text text;
 	string debugText;
 
 	void Update () {
-		
+
 		if (Input.touchCount > 0) {
 			//touch positions
 			for (int i = 0; i < Input.touchCount; i++) {
@@ -19,16 +20,6 @@ public class AndroidTest : MonoBehaviour {
 				debugText += ("\n Pos " + i + ":" + Input.touches[i].position + "	Touch Phase: " + Input.touches[i].phase);
 			}
 			text.text = debugText;
-
-			Ray touchRay = Camera.main.ScreenPointToRay(Input.touches[0].position);
-			RaycastHit hitPoint;
-			int layerMask = 1 << 8;
-
-			if (Input.touches[0].phase == TouchPhase.Began) {
-				if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
-					Instantiate(planet, hitPoint.point, new Quaternion(0, 0, 0, 0));
-				}
-			}
 		}
 	}
 
@@ -38,5 +29,7 @@ public class AndroidTest : MonoBehaviour {
 		for (int i = 0; i < allPlanets.Length; i++) {
 			Destroy(allPlanets[i]);
 		}
+		player.transform.position = new Vector3(0, -20, 0);
+		player.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
 	}
 }
