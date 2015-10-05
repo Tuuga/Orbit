@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour {
 
 	public float pushStr;
 	public float mouseSensitivity;
+	public enum moveMode {boost, vertical, turn, cardinal, android};
+
 	public bool boost;
 	public bool vertical;
 	public bool turn;

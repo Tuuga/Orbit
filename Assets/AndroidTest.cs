@@ -19,48 +19,24 @@ public class AndroidTest : MonoBehaviour {
 				debugText += ("\n Pos " + i + ":" + Input.touches[i].position + "	Touch Phase: " + Input.touches[i].phase);
 			}
 			text.text = debugText;
-		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		/*
-		// If device supports touch, touch didn't cancel or end
-		if (Input.touchSupported) {
-			// Ray from screen to touch position
-			Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-			RaycastHit hit;
+			Ray touchRay = Camera.main.ScreenPointToRay(Input.touches[0].position);
+			RaycastHit hitPoint;
 			int layerMask = 1 << 8;
 
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-				if (Input.touches[0].phase == TouchPhase.Began) {
-					Instantiate(planet, hit.point, new Quaternion(0, 0, 0, 0));
-				}
-			}
-		} else {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-			int layerMask = 1 << 8;
-
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
-				if (Input.GetKeyDown(KeyCode.Mouse0)) {
-					Instantiate(planet, hit.point, new Quaternion(0, 0, 0, 0));
+			if (Input.touches[0].phase == TouchPhase.Began) {
+				if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
+					Instantiate(planet, hitPoint.point, new Quaternion(0, 0, 0, 0));
 				}
 			}
 		}
-		*/
+	}
+
+	public void Reset () {
+		GameObject[] allPlanets = GameObject.FindGameObjectsWithTag("Planet");
+
+		for (int i = 0; i < allPlanets.Length; i++) {
+			Destroy(allPlanets[i]);
+		}
 	}
 }
