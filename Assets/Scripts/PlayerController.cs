@@ -48,10 +48,10 @@ public class PlayerController : MonoBehaviour {
 			}
 			//W and S for throttle
 			if (Input.GetKey(KeyCode.W)) {
-				maxSpeed += Time.deltaTime;
+				maxSpeed += Time.deltaTime * 10;
 			}
 			if (Input.GetKey(KeyCode.S)) {
-				maxSpeed -= Time.deltaTime;
+				maxSpeed -= Time.deltaTime * 10;
 			}
 		}
 
