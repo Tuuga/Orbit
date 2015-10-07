@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		//Moves the ship forward constantly
 		rb.AddForce(transform.forward * maxSpeed);
-		Debug.Log(rb.velocity.magnitude);
+		//Debug.Log(rb.velocity.magnitude);
 	}
 
 	void Update () {
