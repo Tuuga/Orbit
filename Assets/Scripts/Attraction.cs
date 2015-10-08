@@ -8,6 +8,7 @@ public class Attraction : MonoBehaviour {
 	public float force;
 	public float angle;
 	public Vector3 direction;
+	public bool oneSideGravity;
 
 	Rigidbody rb;
 	GameObject gs;
@@ -35,7 +36,18 @@ public class Attraction : MonoBehaviour {
 
         direction = (transform.position - g.transform.position).normalized * force;
 
-        rb.AddForce(direction);
+		if (oneSideGravity /*&& g.transform.position.y - transform.position.y > 0*/) {
+
+			//need new vector
+			//if y is negative
+			//	gravity
+			//else
+			//	no gravity
+			rb.AddForce(direction);
+		}
+		if (!oneSideGravity) {
+			rb.AddForce(direction);
+		}
 
 		//Debug lines and Angle
 		if (drawDebugLines) {

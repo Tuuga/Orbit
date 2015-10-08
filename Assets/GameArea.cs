@@ -12,4 +12,11 @@ public class GameArea : MonoBehaviour {
 			Debug.Log("Out of Borders!");
 		}
 	}
+
+	void OnTriggerEnter (Collider c) {
+		if (c.name == "Player") {
+			Debug.Log("Inside Borders");
+
+		}
+	}
 }

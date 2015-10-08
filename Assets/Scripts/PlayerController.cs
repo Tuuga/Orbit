@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
-		transform.LookAt(Vector3.up, Vector3.back);
+		transform.LookAt(Vector3.up * 10f, Vector3.back);
 	}
 
 	void Start () {
