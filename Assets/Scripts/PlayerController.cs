@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public float startSpeed;
 	public float turnSpeed;
 	public bool pc;
+	public bool mouseAim;
 	public bool android;
 
 	Rigidbody rb;
@@ -52,6 +53,17 @@ public class PlayerController : MonoBehaviour {
 			}
 			if (Input.GetKey(KeyCode.S)) {
 				maxSpeed -= Time.deltaTime * 10;
+			}
+
+			if (mouseAim) {
+				Ray touchRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hitPoint;
+				int layerMask = 1 << 8;
+
+				//Aim at mouse position in world space
+				if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
+					transform.LookAt(hitPoint.point, Vector3.back);
+				}
 			}
 		}
 

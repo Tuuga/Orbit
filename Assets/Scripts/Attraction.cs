@@ -30,21 +30,18 @@ public class Attraction : MonoBehaviour {
         if (gs != null) {
             float dist = Vector2.Distance(g.transform.position, transform.position);
             force = (mass1 * mass2) /  (dist * dist);
-        } else {
-            //force = mass1 / Mathf.Sqrt (Vector2.Distance (g.transform.position, transform.position));
         }
 
         direction = (transform.position - g.transform.position).normalized * force;
 
-		if (oneSideGravity /*&& g.transform.position.y - transform.position.y > 0*/) {
-
-			//need new vector
-			//if y is negative
-			//	gravity
-			//else
-			//	no gravity
-			rb.AddForce(direction);
+		if (oneSideGravity) {
+			Vector3 gToThis = g.transform.position - transform.position;
+			Debug.Log(gToThis.y);
+			if (gToThis.y < 0) {
+				rb.AddForce(direction);
+			}
 		}
+
 		if (!oneSideGravity) {
 			rb.AddForce(direction);
 		}
