@@ -3,8 +3,13 @@ using System.Collections;
 
 public class GameArea : MonoBehaviour {
 
-	void OnTriggerStay (Collider c) {
+	public Transform player;
+	Vector3 pos;
 
+	void Update () {
+
+		pos = new Vector3(0, player.transform.position.y - 50, 0);
+		transform.position = pos;
 	}
 
 	void OnTriggerExit (Collider c) {

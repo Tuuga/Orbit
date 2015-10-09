@@ -17,11 +17,13 @@ public class CameraScript : MonoBehaviour {
 
 	void Update () {
 
-		z += Input.mouseScrollDelta.y;
-		cameraPos = player.transform.position;
-		cameraPos.z = z;
-		cameraPos.y = player.transform.position.y + y;
-		transform.position = cameraPos;
+		if (player != null) {
+			z += Input.mouseScrollDelta.y;
+			cameraPos = player.transform.position;
+			cameraPos.z = z;
+			cameraPos.y = player.transform.position.y + y;
+			transform.position = cameraPos;
+		}
 
 		if (Input.GetKeyDown(KeyCode.F)) {
 			RenderSettings.skybox = skybox1;

@@ -36,7 +36,6 @@ public class Attraction : MonoBehaviour {
 
 		if (oneSideGravity) {
 			Vector3 gToThis = g.transform.position - transform.position;
-			Debug.Log(gToThis.y);
 			if (gToThis.y < 0) {
 				rb.AddForce(direction);
 			}
