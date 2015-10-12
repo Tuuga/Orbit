@@ -10,7 +10,7 @@ public class ChunkManager : MonoBehaviour {
 	Vector3 chunkSpot;
 
 	int rotInt;
-	public Quaternion[] chunkRot;
+	Quaternion[] chunkRot;
 	public List<GameObject> chunkList;
 
 	void Awake () {
@@ -35,7 +35,6 @@ public class ChunkManager : MonoBehaviour {
 	public void SpawnChunk () {
 
 		rotInt = (int)Random.Range(0, 4);
-		Debug.Log(rotInt);
 		randomInt = (int)Random.Range(0, chunks.Length);
 		Destroy(chunkList[0]);
 		chunkList.Remove(chunkList[0]);

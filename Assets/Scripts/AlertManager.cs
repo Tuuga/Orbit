@@ -22,7 +22,7 @@ public class AlertManager : MonoBehaviour {
 				GameObject arrowIns = (GameObject)Instantiate(arrow, Vector3.zero, new Quaternion(0, 0, 0, 0));
 				arrowIns.name = "AlertArrow";
 				arrowIns.tag = "Arrow";
-				arrowIns.transform.parent = canvas.transform;
+				arrowIns.transform.SetParent(canvas.transform, false);
 				arrowIns.GetComponent<ObjectAlert>().planet = planets[i];
 			}
 		}

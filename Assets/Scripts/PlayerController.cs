@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour {
 	public bool mouseAim;
 	public bool android;
 
+	GameObject rayPlane;
 	Rigidbody rb;
 
 	void Awake () {
+		rayPlane = GameObject.Find("RayPlane");
 		rb = GetComponent<Rigidbody>();
 		transform.LookAt(Vector3.up * 10f, Vector3.back);
 	}
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+
+		rayPlane.transform.position = transform.position;
 
 		//PC inputs
 		if (pc == true) {
