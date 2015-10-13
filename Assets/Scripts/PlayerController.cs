@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour {
 				//Aim at mouse position in world space
 				if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
 					transform.LookAt(hitPoint.point, Vector3.back);
+					transform.Rotate(0, 180, 0);
 				}
 			}
 		}
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour {
 				if (Input.touches[0].phase == TouchPhase.Began || Input.touches[0].phase == TouchPhase.Moved) {
 					if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
 						transform.LookAt(hitPoint.point, Vector3.back);
+						transform.Rotate(0, 180, 0);
 					}
 				}
 			}
