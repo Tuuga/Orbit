@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour {
 	public bool mouseAim;
 	public bool android;
 
+	Vector3 lastPos;
+	Vector3 playerDelta;
+	float currentSpeed;
 	GameObject rayPlane;
 	Rigidbody rb;
 
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 		rayPlane = GameObject.Find("RayPlane");
 		rb = GetComponent<Rigidbody>();
 		transform.LookAt(Vector3.up * 10f, Vector3.back);
+		lastPos = new Vector3(0, 0, 0);
 	}
 
 	void Start () {
@@ -38,6 +42,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+
+		playerDelta = transform.position - lastPos;
+		currentSpeed = playerDelta.magnitude / Time.deltaTime;
+		int intSpeed = (int)currentSpeed;
+
+		Debug.Log(intSpeed);
 
 		rayPlane.transform.position = transform.position;
 
@@ -67,6 +77,7 @@ public class PlayerController : MonoBehaviour {
 				//Aim at mouse position in world space
 				if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
 					transform.LookAt(hitPoint.point, Vector3.back);
+					transform.Rotate(0, 180, 0);
 				}
 			}
 		}
@@ -83,9 +94,11 @@ public class PlayerController : MonoBehaviour {
 				if (Input.touches[0].phase == TouchPhase.Began || Input.touches[0].phase == TouchPhase.Moved) {
 					if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
 						transform.LookAt(hitPoint.point, Vector3.back);
+						transform.Rotate(0, 180, 0);
 					}
 				}
 			}
 		}
+		lastPos = transform.position;
 	}
 }

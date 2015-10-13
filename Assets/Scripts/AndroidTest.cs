@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using System.Collections;
 
 public class AndroidTest : MonoBehaviour {
@@ -23,6 +24,10 @@ public class AndroidTest : MonoBehaviour {
 	}
 
 	public void Reset () {
+		int currentScene = Application.loadedLevel;
+		Application.LoadLevel(currentScene);
+		
+		/*
 		GameObject[] allPlanets = GameObject.FindGameObjectsWithTag("Planet");
 
 		for (int i = 0; i < allPlanets.Length; i++) {
@@ -30,5 +35,6 @@ public class AndroidTest : MonoBehaviour {
 		}
 		player.transform.position = new Vector3(0, -20, 0);
 		player.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
+		*/	
 	}
 }
