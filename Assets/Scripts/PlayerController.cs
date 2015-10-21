@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
 		int intSpeed = (int)currentSpeed;
 
-		Debug.Log(intSpeed);
+		Debug.Log("Units/s: " + intSpeed);
 
 		rayPlane.transform.position = transform.position;
 
