@@ -31,7 +31,6 @@ public class PlanetProperties : MonoBehaviour {
         if (orbiting) {
             Orbit();
         }
-        
     }
 
     void Update() {
