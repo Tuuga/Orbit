@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	//Strength of the forward throttle
 	public float maxSpeedWithThrust;
 	public float thrustAcceleration;
+	public float starMaxSpeedBoostRate;
 	public float startSpeed;
 	public float turnSpeed;
 	public bool pc;
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter (Collider c) {
 
 		if (c.tag == "Star") {
-			maxSpeedWithThrust *= 1.1f;
+			maxSpeedWithThrust *= maxSpeedWithThrust;
 		}
 	}
 }

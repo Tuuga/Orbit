@@ -15,7 +15,23 @@ public class Attraction : MonoBehaviour {
 	public bool drawDebugLines;
 
 	void Awake () {
-	
+
+		//Sets visual gravity radius if GravitySources parent is a star
+
+		if (gameObject.transform.parent.tag == "Star") {
+			GameObject gravitySemiCircle = transform.FindChild("PlaceholderGravityRadiusHalf").gameObject;
+			GameObject gravityCircle = transform.FindChild("PlaceholderGravityRadius").gameObject;
+
+			float radius = gameObject.GetComponent<SphereCollider>().radius;
+			gravityCircle.transform.localScale = new Vector3(radius, radius, 1);
+			gravitySemiCircle.transform.localScale = new Vector3(radius, radius, 1);
+
+			if (oneSideGravity) {
+				gravityCircle.SetActive (false);
+			} else {
+				gravitySemiCircle.SetActive(false);
+			}
+		}
 	}
 
     void Gravity(GameObject g) {
