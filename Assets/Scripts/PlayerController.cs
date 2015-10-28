@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
 		int intSpeed = (int)currentSpeed;
 
-		Debug.Log("Units/s: " + currentSpeed);
+		//Debug.Log("Units/s: " + currentSpeed);
 
 		lastPos = transform.position;
 	}

@@ -4,7 +4,7 @@ using System.Collections;
 public class MapBorders : MonoBehaviour {
 
 	GameObject player;
-
+	
 	void Awake () {
 		player = GameObject.Find ("Player");
 	}

@@ -8,7 +8,7 @@ public class GameArea : MonoBehaviour {
 
 	void Update () {
 
-		pos = new Vector3(0, player.transform.position.y - 50, 0);
+		pos = new Vector3(0, player.transform.position.y, 0);
 		transform.position = pos;
 	}
 
@@ -21,7 +21,6 @@ public class GameArea : MonoBehaviour {
 	void OnTriggerEnter (Collider c) {
 		if (c.name == "Player") {
 			Debug.Log("Inside Borders");
-
 		}
 	}
 }
