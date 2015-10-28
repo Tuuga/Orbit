@@ -9,6 +9,7 @@ public class BorderScript : MonoBehaviour {
 	float distToBorder;
 	float force;
 	public float forceStrength;
+	public float slowStrength;
 	Vector3 boxPos;
 	Vector3 playerPos;
 
@@ -22,19 +23,21 @@ public class BorderScript : MonoBehaviour {
 		playerPos = rb.position;
 
 		if (gameObject.name == "RightBorder") {
-			distToBorder = (boxPos.x - boxSizeX / 2) - playerPos.x;
+			distToBorder = (boxPos.x + boxSizeX / 2) - playerPos.x;
 		} else if (gameObject.name == "LeftBorder") {
-			distToBorder = playerPos.x - (boxPos.x + boxSizeX / 2);
+			distToBorder = playerPos.x - (boxPos.x - boxSizeX / 2);
 		}
 		force = boxSizeX - distToBorder;
 
-		//if (force > 0) {
+		if (force > 0) {
 			Debug.Log(force);
 			if (gameObject.name == "RightBorder") {
 				rb.AddForce(Vector3.left * force * forceStrength, ForceMode.Acceleration);
+				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
 			} else if (gameObject.name == "LeftBorder") {
 				rb.AddForce(Vector3.right * force * forceStrength, ForceMode.Acceleration);
+				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
 			}
-		//}
+		}
 	}
 }

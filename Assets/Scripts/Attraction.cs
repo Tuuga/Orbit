@@ -45,7 +45,7 @@ public class Attraction : MonoBehaviour {
 
         if (gs != null) {
             float dist = Vector2.Distance(g.transform.position, transform.position);
-            force = (mass1 * mass2) /  (dist * dist);
+            force = (mass1 * mass2) / (dist * dist);
         }
 
         direction = (transform.position - g.transform.position).normalized * force;
