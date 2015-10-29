@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -20,12 +21,14 @@ public class PlayerController : MonoBehaviour {
 	float currentSpeed;
 	GameObject rayPlane;
 	Rigidbody rb;
+	Text speedText;
 
 	void Awake () {
 		rayPlane = GameObject.Find("RayPlane");
 		rb = GetComponent<Rigidbody>();
 		transform.LookAt(Vector3.up * 10f, Vector3.back);
 		lastPos = new Vector3(0, 0, 0);
+		speedText = GameObject.Find("SpeedText").GetComponent<Text>();
 	}
 
 	void Start () {
@@ -46,9 +49,9 @@ public class PlayerController : MonoBehaviour {
 
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
-		int intSpeed = (int)currentSpeed;
 
-		Debug.Log("Units/s: " + currentSpeed);
+		//Speed UI
+		speedText.text = "Units/s: " + Mathf.Round(currentSpeed);
 
 		lastPos = transform.position;
 	}
