@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
 	//Strength of the forward throttle
 	public float maxSpeedWithThrust;
 	public float thrustAcceleration;
+	public float gravityPassBoost;
+
 	public float starMaxSpeedBoostRate;
 	public float startSpeed;
 	public float turnSpeed;
@@ -24,7 +26,6 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		transform.LookAt(Vector3.up * 10f, Vector3.back);
 		lastPos = new Vector3(0, 0, 0);
-		rb.drag = thrustAcceleration / maxSpeedWithThrust;
 	}
 
 	void Start () {
@@ -47,14 +48,14 @@ public class PlayerController : MonoBehaviour {
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
 		int intSpeed = (int)currentSpeed;
 
-		//Debug.Log("Units/s: " + currentSpeed);
+		Debug.Log("Units/s: " + currentSpeed);
 
 		lastPos = transform.position;
 	}
 
 	void Update () {
 
-		
+		rb.drag = thrustAcceleration / maxSpeedWithThrust;
 
 		rayPlane.transform.position = transform.position;
 
@@ -114,9 +115,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	//MaxSpeed test
 	void OnTriggerEnter (Collider c) {
-
-		if (c.tag == "Star") {
-			maxSpeedWithThrust *= maxSpeedWithThrust;
+		if (c.transform.parent != null && c.transform.parent.tag == "Star") {
+			maxSpeedWithThrust *= gravityPassBoost;
 		}
 	}
 }

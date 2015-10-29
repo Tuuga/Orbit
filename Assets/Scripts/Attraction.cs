@@ -71,7 +71,7 @@ public class Attraction : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider c) {
-		if (c.GetComponent<Rigidbody>() != null) {
+		if (c.tag == "Star") {
 			Gravity (c.gameObject);
 		}
 	}
