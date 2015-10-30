@@ -6,6 +6,7 @@ public class ChunkManager : MonoBehaviour {
 
 	public GameObject[] chunks;
 	public GameObject chunkParent;
+	float nextChunkPos;
 	int randomInt;
 	Vector3 chunkSpot;
 
@@ -15,6 +16,7 @@ public class ChunkManager : MonoBehaviour {
 
 	void Awake () {
 
+		nextChunkPos = chunks[0].GetComponent<BoxCollider>().size.y;
 		chunkRot = new Quaternion[4];
 
 		chunkRot[0] = Quaternion.Euler(0, 0, 0);
@@ -25,7 +27,7 @@ public class ChunkManager : MonoBehaviour {
 
 		for (int i = 0; i < 3; i++) {			
 			randomInt = (int)Random.Range(0, chunks.Length);
-			chunkSpot += new Vector3(0, 100, 0);
+			chunkSpot += new Vector3(0, nextChunkPos, 0);
 			GameObject chunkIns = (GameObject)Instantiate(chunks[randomInt], chunkSpot, new Quaternion(0, 0, 0, 0));
 			chunkIns.transform.parent = chunkParent.transform;
 			chunkList.Add(chunkIns);

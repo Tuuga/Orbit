@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	Vector3 lastPos;
 	Vector3 playerDelta;
 	float currentSpeed;
+	float topSpeed;
 	GameObject rayPlane;
 	Rigidbody rb;
 	Text speedText;
@@ -50,8 +51,17 @@ public class PlayerController : MonoBehaviour {
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
 
+		
+		if (topSpeed < currentSpeed) {
+			topSpeed = currentSpeed;
+		}
+		//fix for 135 topSpeed at start
+        if (Time.time < 0.1f) {
+			topSpeed = 0;
+		}
+
 		//Speed UI
-		speedText.text = "Units/s: " + Mathf.Round(currentSpeed);
+		speedText.text = "Units/s: " + Mathf.Round(currentSpeed) + "\n<color=red>Top Speed: " + Mathf.Round(topSpeed) + "</color>";
 
 		lastPos = transform.position;
 	}
@@ -59,8 +69,14 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		rb.drag = thrustAcceleration / maxSpeedWithThrust;
-
 		rayPlane.transform.position = transform.position;
+
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			transform.FindChild("GravitySource").GetComponent<Attraction>().mass1 = 0;
+		}
+		if (Input.GetKeyUp(KeyCode.Space)) {
+			transform.FindChild("GravitySource").GetComponent<Attraction>().mass1 = 1;
+		}
 
 		//PC inputs
 		if (pc == true) {
@@ -72,9 +88,9 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKey(KeyCode.D)) {
 				transform.rotation *= Quaternion.Euler(Vector3.up * turnSpeed);
 			}
+
 			//W and S for throttle
 			//debug
-
 			if (Input.GetKey(KeyCode.W)) {
 				maxSpeedWithThrust += Time.deltaTime * 10;
 			}
@@ -120,6 +136,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter (Collider c) {
 		if (c.transform.parent != null && c.transform.parent.tag == "Star") {
 			maxSpeedWithThrust *= gravityPassBoost;
+			thrustAcceleration *= gravityPassBoost;
 		}
 	}
 }

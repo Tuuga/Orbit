@@ -71,7 +71,7 @@ public class Attraction : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider c) {
-		if (c.tag == "Star") {
+		if (c.tag == "Star" || c.tag == "Planet" || c.tag == "Player" && c.gameObject != gameObject.transform.parent.gameObject) {
 			Gravity (c.gameObject);
 		}
 	}
