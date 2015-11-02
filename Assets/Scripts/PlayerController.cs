@@ -46,8 +46,6 @@ public class PlayerController : MonoBehaviour {
 		}
 		//Moves the ship forward constantly
 		rb.AddForce(transform.forward * thrustAcceleration, ForceMode.Acceleration);
-		//Debug.Log(rb.velocity.magnitude);
-
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
 
@@ -62,7 +60,6 @@ public class PlayerController : MonoBehaviour {
 
 		//Speed UI
 		speedText.text = "Units/s: " + Mathf.Round(currentSpeed) + "\n<color=red>Top Speed: " + Mathf.Round(topSpeed) + "</color>";
-
 		lastPos = transform.position;
 	}
 
@@ -105,9 +102,6 @@ public class PlayerController : MonoBehaviour {
 
 				//Aim at mouse position in world space
 				if (Physics.Raycast(touchRay, out hitPoint, Mathf.Infinity, layerMask)) {
-					//transform.LookAt(hitPoint.point, Vector3.back);
-					//transform.Rotate(0, 180, 0);
-					
 					rb.MoveRotation(Quaternion.LookRotation (transform.position - hitPoint.point, Vector3.back));
 				}
 			}
@@ -115,7 +109,6 @@ public class PlayerController : MonoBehaviour {
 
 		//Android Inputs
 		if (android) {
-
 			if (Input.touchCount > 0) {
 				Ray touchRay = Camera.main.ScreenPointToRay(Input.touches[0].position);
 				RaycastHit hitPoint;
@@ -130,13 +123,11 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		}
-
 	}
-	//MaxSpeed test
 	void OnTriggerEnter (Collider c) {
-		if (c.transform.parent != null && c.transform.parent.tag == "Star") {
-			maxSpeedWithThrust *= gravityPassBoost;
-			thrustAcceleration *= gravityPassBoost;
+		if (c.transform.parent != null && c.transform.parent.tag == "Star") {	//If player is in a gravity source of a star
+			maxSpeedWithThrust *= gravityPassBoost;                             //Multiplies the max speed
+			thrustAcceleration *= gravityPassBoost;								//Multiplies the acceleration
 		}
 	}
 }

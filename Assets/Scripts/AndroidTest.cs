@@ -26,15 +26,5 @@ public class AndroidTest : MonoBehaviour {
 	public void Reset () {
 		int currentScene = Application.loadedLevel;
 		Application.LoadLevel(currentScene);
-		
-		/*
-		GameObject[] allPlanets = GameObject.FindGameObjectsWithTag("Planet");
-
-		for (int i = 0; i < allPlanets.Length; i++) {
-			Destroy(allPlanets[i]);
-		}
-		player.transform.position = new Vector3(0, -20, 0);
-		player.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
-		*/	
 	}
 }

@@ -30,7 +30,6 @@ public class BorderScript : MonoBehaviour {
 		force = boxSizeX - distToBorder;
 
 		if (force > 0) {
-			Debug.Log(force);
 			if (gameObject.name == "RightBorder") {
 				rb.AddForce(Vector3.left * force * forceStrength, ForceMode.Acceleration);
 				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
