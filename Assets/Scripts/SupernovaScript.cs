@@ -5,7 +5,7 @@ using System.Collections;
 public class SupernovaScript : MonoBehaviour {
 
 	public float speed;
-	public float maxDist = 100f;
+	public float maxDist = 100f; //If player is maxDist units away from supernova, the indicator is transparent
 	public Color snIndicator;
 	float acceleration = 1f;
 	float snToPlayerDist;
@@ -23,7 +23,7 @@ public class SupernovaScript : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		acceleration += 0.01f;//Magic number
+		acceleration += 0.01f; //Magic number
 		transform.position += Vector3.up * speed * acceleration * Time.fixedDeltaTime;
 	}
 

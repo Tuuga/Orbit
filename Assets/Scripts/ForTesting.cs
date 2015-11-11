@@ -3,13 +3,16 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 
-public class AndroidTest : MonoBehaviour {
+public class ForTesting : MonoBehaviour {
 
+	public float time_Scale = 1f;
 	public GameObject player;
 	public Text text;
 	string debugText;
 
 	void Update () {
+
+		Time.timeScale = time_Scale;
 
 		if (Input.touchCount > 0) {
 			//touch positions
