@@ -10,11 +10,14 @@ public class BorderScript : MonoBehaviour {
 	float force;
 	public float forceStrength;
 	public float slowStrength;
+	public float speedPenalty;
 	Vector3 boxPos;
 	Vector3 playerPos;
+	GameObject player;
 
 	void Awake () {
-		rb = GameObject.Find("Player").GetComponent<Rigidbody>();
+		player = GameObject.Find("Player");
+        rb = player.GetComponent<Rigidbody>();
 		boxSizeX = gameObject.GetComponent<BoxCollider>().size.x;
     }
 
@@ -33,6 +36,8 @@ public class BorderScript : MonoBehaviour {
 			if (gameObject.name == "RightBorder") {
 				rb.AddForce(Vector3.left * force * forceStrength, ForceMode.Acceleration);
 				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
+				player.GetComponent<PlayerController>().maxSpeedWithThrust *= speedPenalty * Time.fixedDeltaTime;
+				player.GetComponent<PlayerController>().thrustAcceleration *= speedPenalty * Time.fixedDeltaTime;
 			} else if (gameObject.name == "LeftBorder") {
 				rb.AddForce(Vector3.right * force * forceStrength, ForceMode.Acceleration);
 				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
