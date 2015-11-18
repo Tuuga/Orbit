@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour {
 	public bool mouseAim;
 	public bool android;
 
+	public GameObject mainCam;
+
 	Vector3 lastPos;
 	Vector3 playerDelta;
 	float currentSpeed;
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 		rb.AddForce(transform.forward * thrustAcceleration, ForceMode.Acceleration);
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
+		mainCam.GetComponent<CameraScript>().CameraMovement(currentSpeed);
 
 		
 		if (topSpeed < currentSpeed) {

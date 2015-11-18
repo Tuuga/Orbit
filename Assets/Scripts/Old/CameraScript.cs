@@ -3,10 +3,15 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour {
 
+	public float defaultCamY;
+	public float defaultCamZ;
+	public float cameraYBySpeed;
+	public float cameraZBySpeed;
+
 	GameObject player;
-	Vector3 cameraPos;
-    public float y;
-    public float z;
+	Vector3 playerPos;
+    float camY;
+    float camZ;
 
 	void Start () {
 		player = GameObject.Find("Player");
@@ -14,11 +19,12 @@ public class CameraScript : MonoBehaviour {
 	void Update () {
 
 		if (player != null) {
-			z += Input.mouseScrollDelta.y;
-			cameraPos = player.transform.position;
-			cameraPos.z = z;
-			cameraPos.y = player.transform.position.y + y;
-			transform.position = cameraPos;
+			playerPos = player.transform.position;
+			transform.position = new Vector3(playerPos.x, playerPos.y + camY, camZ);
 		}
+	}
+	public void CameraMovement(float speed) {
+		camZ = defaultCamZ - (speed * cameraZBySpeed);
+		camY = defaultCamY + (speed * cameraYBySpeed);
 	}
 }

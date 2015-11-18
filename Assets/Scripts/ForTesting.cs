@@ -11,7 +11,6 @@ public class ForTesting : MonoBehaviour {
 	string debugText;
 
 	void Update () {
-
 		Time.timeScale = time_Scale;
 
 		if (Input.touchCount > 0) {
