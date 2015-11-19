@@ -8,12 +8,14 @@ public class BorderScript : MonoBehaviour {
 	float boxSizeX;
 	float distToBorder;
 	float force;
-	public float forceStrength;
+	float thrustPenalty;
+	float accPenalty;
+    public float forceStrength;
 	public float slowStrength;
 	public float speedPenalty;
-	float penaltyAmount;
 	Vector3 boxPos;
 	Vector3 playerPos;
+	float enterVelocity;
 	GameObject player;
 
 	void Awake () {
@@ -21,6 +23,10 @@ public class BorderScript : MonoBehaviour {
         rb = player.GetComponent<Rigidbody>();
 		boxSizeX = gameObject.GetComponent<BoxCollider>().size.x;
     }
+
+	void OnTriggerEnter (Collider c) {
+		enterVelocity = rb.velocity.magnitude;
+	}
 
 	void OnTriggerStay (Collider c) {
 		boxPos = transform.position;
@@ -31,36 +37,15 @@ public class BorderScript : MonoBehaviour {
 		} else if (gameObject.name == "LeftBorder") {
 			distToBorder = playerPos.x - (boxPos.x - boxSizeX / 2);
 		}
-		force = boxSizeX - distToBorder;
+		force = Mathf.Clamp (1f - (boxSizeX - distToBorder) / boxSizeX, 0, 1);
 
-		//WIP
-		/*
-		if (border) {
-		Speed & Acceleration -= 10% * time.fixedDeltaTime;
-		}
-		*/
-
-		if (force > 0) {
-			if (gameObject.name == "RightBorder") {
-				rb.AddForce(Vector3.left * force * forceStrength, ForceMode.Acceleration);
-				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
-
-				penaltyAmount = player.GetComponent<PlayerController>().maxSpeedWithThrust * speedPenalty;
-                player.GetComponent<PlayerController>().maxSpeedWithThrust -= penaltyAmount * Time.fixedDeltaTime;
-
-				penaltyAmount = player.GetComponent<PlayerController>().thrustAcceleration * speedPenalty;
-                player.GetComponent<PlayerController>().thrustAcceleration -= penaltyAmount * Time.fixedDeltaTime;
-
-			} else if (gameObject.name == "LeftBorder") {
-				rb.AddForce(Vector3.right * force * forceStrength, ForceMode.Acceleration);
-				rb.AddForce(Vector3.down * slowStrength, ForceMode.Acceleration);
-
-				penaltyAmount = player.GetComponent<PlayerController>().maxSpeedWithThrust * speedPenalty;
-				player.GetComponent<PlayerController>().maxSpeedWithThrust -= penaltyAmount * Time.fixedDeltaTime;
-
-				penaltyAmount = player.GetComponent<PlayerController>().thrustAcceleration * speedPenalty;
-				player.GetComponent<PlayerController>().thrustAcceleration -= penaltyAmount * Time.fixedDeltaTime;
-			}
-		}
+		thrustPenalty = player.GetComponent<PlayerController>().maxSpeedWithThrust * speedPenalty;
+		accPenalty = player.GetComponent<PlayerController>().thrustAcceleration * speedPenalty;
+		InBorder();
+	}
+	void InBorder () {
+		player.GetComponent<PlayerController>().maxSpeedWithThrust -= thrustPenalty * Time.fixedDeltaTime;
+		player.GetComponent<PlayerController>().thrustAcceleration -= accPenalty * Time.fixedDeltaTime;
+		rb.velocity = (rb.velocity.normalized * enterVelocity) * force;
 	}
 }

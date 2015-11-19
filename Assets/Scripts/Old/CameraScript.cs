@@ -3,8 +3,10 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour {
 
-	public float defaultCamY;
-	public float defaultCamZ;
+	public float minCamY;
+	public float minCamZ;
+	public float maxCamY;
+	public float maxCamZ;
 	public float cameraYBySpeed;
 	public float cameraZBySpeed;
 
@@ -24,7 +26,7 @@ public class CameraScript : MonoBehaviour {
 		}
 	}
 	public void CameraMovement(float speed) {
-		camZ = defaultCamZ - (speed * cameraZBySpeed);
-		camY = defaultCamY + (speed * cameraYBySpeed);
+		camZ = Mathf.Clamp(maxCamZ - (speed * cameraZBySpeed), minCamZ, maxCamZ);
+		camY = Mathf.Clamp(minCamY + (speed * cameraYBySpeed), minCamY, maxCamY);
 	}
 }
