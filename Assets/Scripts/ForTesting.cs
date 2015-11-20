@@ -8,7 +8,15 @@ public class ForTesting : MonoBehaviour {
 	public float time_Scale = 1f;
 	public GameObject player;
 	public Text text;
+	public GameObject scoreManager;
 	string debugText;
+
+	void Awake () {
+		if (GameObject.Find("ScoreManager") == null) {
+			GameObject scoreIns = (GameObject) Instantiate(scoreManager, Vector3.zero, Quaternion.Euler(0, 0, 0));
+			scoreIns.name = "ScoreManager";
+		}
+	}
 
 	void Update () {
 		Time.timeScale = time_Scale;

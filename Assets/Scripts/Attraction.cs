@@ -75,4 +75,9 @@ public class Attraction : MonoBehaviour {
 			Gravity (c.gameObject);
 		}
 	}
+	void OnTriggerExit (Collider c) {
+		if (c.tag == "Star" || c.tag == "Planet" || c.tag == "Player" && c.gameObject != gameObject.transform.parent.gameObject) {
+			GameObject.Find("ScoreManager").GetComponent<ScoreScript>().AddScore(10f);
+		}
+	}
 }
