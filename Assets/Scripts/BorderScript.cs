@@ -10,8 +10,6 @@ public class BorderScript : MonoBehaviour {
 	float force;
 	float thrustPenalty;
 	float accPenalty;
-    public float forceStrength;
-	public float slowStrength;
 	public float speedPenalty;
 	Vector3 boxPos;
 	Vector3 playerPos;
@@ -46,6 +44,7 @@ public class BorderScript : MonoBehaviour {
 	void InBorder () {
 		player.GetComponent<PlayerController>().maxSpeedWithThrust -= thrustPenalty * Time.fixedDeltaTime;
 		player.GetComponent<PlayerController>().thrustAcceleration -= accPenalty * Time.fixedDeltaTime;
-		rb.velocity = (rb.velocity.normalized * enterVelocity) * force;
+		Vector3 playerVel = (rb.velocity.normalized * enterVelocity) * force;
+		rb.velocity = playerVel - rb.velocity.normalized;
 	}
 }

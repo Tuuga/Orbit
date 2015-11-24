@@ -7,9 +7,9 @@ public class SupernovaScript : MonoBehaviour {
 	public float maxSpeed;
 	public float snAcceleration;
 	public float minDist = 100f; //If player is maxDist units away from supernova, the indicator is transparent
-	public Color snIndicator;
 	float snToPlayerDist;
 	GameObject player;
+	Color snIndicator;
 	Image supernovaDist;
 	Rigidbody rb;
 
@@ -17,6 +17,7 @@ public class SupernovaScript : MonoBehaviour {
 		player = GameObject.Find("Player");
 		rb = gameObject.GetComponent<Rigidbody>();
 		supernovaDist = GameObject.Find("SupernovaDistance").GetComponent<Image>();
+		snIndicator = supernovaDist.color;
 	}
 	void Update () {
 		snToPlayerDist = Vector3.Distance(transform.position, player.transform.position);
