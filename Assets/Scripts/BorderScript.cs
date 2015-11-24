@@ -13,7 +13,7 @@ public class BorderScript : MonoBehaviour {
 	public float speedPenalty;
 	Vector3 boxPos;
 	Vector3 playerPos;
-	float enterVelocity;
+	Vector3 enterVelocity;
 	GameObject player;
 
 	void Awake () {
@@ -23,7 +23,7 @@ public class BorderScript : MonoBehaviour {
     }
 
 	void OnTriggerEnter (Collider c) {
-		enterVelocity = rb.velocity.magnitude;
+		enterVelocity = rb.velocity;
 	}
 
 	void OnTriggerStay (Collider c) {
@@ -44,7 +44,8 @@ public class BorderScript : MonoBehaviour {
 	void InBorder () {
 		player.GetComponent<PlayerController>().maxSpeedWithThrust -= thrustPenalty * Time.fixedDeltaTime;
 		player.GetComponent<PlayerController>().thrustAcceleration -= accPenalty * Time.fixedDeltaTime;
-		Vector3 playerVel = (rb.velocity.normalized * enterVelocity) * force;
-		rb.velocity = playerVel - rb.velocity.normalized;
+
+		Vector3 playerVel = (rb.velocity.normalized * enterVelocity.magnitude) * force;
+		rb.velocity = playerVel;
 	}
 }

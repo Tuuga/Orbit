@@ -10,6 +10,7 @@ public class InitializationScript : MonoBehaviour {
 			GameObject scoreIns = (GameObject)Instantiate(scoreManager, Vector3.zero, Quaternion.Euler(0, 0, 0));
 			scoreIns.name = "ScoreManager";
 		}
+		scoreManager = GameObject.Find("ScoreManager");
 		float score = scoreManager.GetComponent<ScoreScript>().score;
 		scoreManager.GetComponent<ScoreScript>().AddScore(-score);
 	}
