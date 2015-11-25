@@ -11,7 +11,6 @@ public class InitializationScript : MonoBehaviour {
 			scoreIns.name = "ScoreManager";
 		}
 		scoreManager = GameObject.Find("ScoreManager");
-		float score = scoreManager.GetComponent<ScoreScript>().score;
-		scoreManager.GetComponent<ScoreScript>().AddScore(-score);
+		scoreManager.GetComponent<ScoreScript>().score = 0f;
 	}
 }

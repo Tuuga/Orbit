@@ -41,6 +41,10 @@ public class BorderScript : MonoBehaviour {
 		accPenalty = player.GetComponent<PlayerController>().thrustAcceleration * speedPenalty;
 		InBorder();
 	}
+	void OnTriggerExit (Collider c) {
+		rb.velocity = rb.velocity.normalized * enterVelocity.magnitude;
+	}
+
 	void InBorder () {
 		player.GetComponent<PlayerController>().maxSpeedWithThrust -= thrustPenalty * Time.fixedDeltaTime;
 		player.GetComponent<PlayerController>().thrustAcceleration -= accPenalty * Time.fixedDeltaTime;

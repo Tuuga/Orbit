@@ -4,15 +4,16 @@ using System.Collections;
 public class Attraction : MonoBehaviour {
 
 	public float mass1;
-	public float mass2;
-	public float force;
-	public float angle;
-	public Vector3 direction;
+	float mass2;
+	float force;
+	float playerDist;
+	float closestDist = Mathf.Infinity;
+
+	Vector3 direction;
 	public bool oneSideGravity;
 
 	Rigidbody rb;
 	GameObject gs;
-	public bool drawDebugLines;
 
 	void Awake () {
 
@@ -45,8 +46,8 @@ public class Attraction : MonoBehaviour {
 
         if (gs != null) {
             float dist = Vector2.Distance(g.transform.position, transform.position);
-            force = (mass1 * mass2) / (dist * dist);
-        }
+			force = (mass1 * mass2) / (dist * dist);
+		}
 
         direction = (transform.position - g.transform.position).normalized * force;
 
@@ -60,24 +61,28 @@ public class Attraction : MonoBehaviour {
 		if (!oneSideGravity) {
 			rb.AddForce(direction);
 		}
-
-		//Debug lines and Angle
-		if (drawDebugLines) {
-			Debug.DrawLine (g.transform.position, rb.velocity, Color.red);
-			Debug.DrawLine (g.transform.position, force * direction.normalized, Color.black);
+	}
+	void OnTriggerEnter (Collider c) {
+		if (c.tag == "Star" || c.tag == "Planet" || c.tag == "Player" && c.gameObject != gameObject.transform.parent.gameObject) {
+			//Dist reset
+			closestDist = Mathf.Infinity;
 		}
-
-		angle = Vector3.Angle (rb.velocity, direction);
 	}
 
 	void OnTriggerStay (Collider c) {
 		if (c.tag == "Star" || c.tag == "Planet" || c.tag == "Player" && c.gameObject != gameObject.transform.parent.gameObject) {
+			//Score
+			Vector3 playerDistVec = transform.position - c.transform.position;
+			playerDist = playerDistVec.magnitude;
+			if (playerDist < closestDist) {
+				closestDist = playerDist;
+			}
 			Gravity (c.gameObject);
 		}
 	}
 	void OnTriggerExit (Collider c) {
 		if (c.tag == "Star" || c.tag == "Planet" || c.tag == "Player" && c.gameObject != gameObject.transform.parent.gameObject) {
-			GameObject.Find("ScoreManager").GetComponent<ScoreScript>().AddScore(10f); //Magic number (adds 10 score)
+			GameObject.Find("ScoreManager").GetComponent<ScoreScript>().AddScore(10f, closestDist); //Magic number (adds 10 score)
 		}
 	}
 }
