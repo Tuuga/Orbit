@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: 8ba71b1ae34fa9347b497b0abd20f397
+timeCreated: 1448623012
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: top
+    21300002: bottom
+    21300004: cont
+    21300006: quit
+    21300008: restart
+    21300010: PauseScreenSheet_5
+    21300012: PauseScreenSheet_6
+    21300014: PauseScreenSheet_7
+    21300016: PauseScreenSheet_8
+    21300018: PauseScreenSheet_9
+    21300020: PauseScreenSheet_10
+    21300022: PauseScreenSheet_11
+    21300024: PauseScreenSheet_12
+    21300026: PauseScreenSheet_13
+    21300028: PauseScreenSheet_14
+    21300030: PauseScreenSheet_15
+    21300032: PauseScreenSheet_16
+    21300034: PauseScreenSheet_17
+    21300036: PauseScreenSheet_18
+    21300038: PauseScreenSheet_19
+    21300040: PauseScreenSheet_20
+    21300042: PauseScreenSheet_21
+    21300044: PauseScreenSheet_22
+    21300046: PauseScreenSheet_23
+    21300048: PauseScreenSheet_24
+    21300050: PauseScreenSheet_25
+    21300052: PauseScreenSheet_26
+    21300054: PauseScreenSheet_27
+    21300056: PauseScreenSheet_28
+    21300058: PauseScreenSheet_29
+    21300060: PauseScreenSheet_30
+    21300062: PauseScreenSheet_31
+    21300064: PauseScreenSheet_32
+    21300066: PauseScreenSheet_35
+    21300068: PauseScreenSheet_36
+    21300070: PauseScreenSheet_37
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: top
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 2042
+        width: 1080
+        height: 336
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bottom
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 2042
+        width: 1080
+        height: 336
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: cont
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1529
+        width: 1080
+        height: 416
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: quit
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1526
+        width: 1080
+        height: 416
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: restart
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1010
+        width: 1080
+        height: 416
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_31
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 857
+        width: 1138
+        height: 53
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_32
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 857
+        width: 208
+        height: 147
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_35
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 530
+        width: 227
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_36
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 530
+        width: 227
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_37
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 530
+        width: 227
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1274
+        width: 416
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1823
+        y: 1274
+        width: 547
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 1099
+        width: 463
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PauseScreenSheet_8
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 1082
+        width: 243
+        height: 92
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
