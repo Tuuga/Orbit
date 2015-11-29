@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 8ba71b1ae34fa9347b497b0abd20f397
-timeCreated: 1448623012
-licenseType: Pro
+timeCreated: 1448646691
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: top
@@ -110,7 +110,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 108
-        y: 1529
+        y: 1526
         width: 1080
         height: 416
       alignment: 0
@@ -143,8 +143,8 @@ TextureImporter:
         y: 857
         width: 1138
         height: 53
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: 0, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PauseScreenSheet_32
       rect:
@@ -153,8 +153,8 @@ TextureImporter:
         y: 857
         width: 208
         height: 147
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: 0, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PauseScreenSheet_35
       rect:
@@ -193,8 +193,8 @@ TextureImporter:
         y: 1274
         width: 416
         height: 81
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: 0, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PauseScreenSheet_6
       rect:
@@ -203,8 +203,8 @@ TextureImporter:
         y: 1274
         width: 547
         height: 75
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: 0, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PauseScreenSheet_7
       rect:
@@ -213,8 +213,8 @@ TextureImporter:
         y: 1099
         width: 463
         height: 75
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: 0, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: PauseScreenSheet_8
       rect:
@@ -223,8 +223,8 @@ TextureImporter:
         y: 1082
         width: 243
         height: 92
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: 0, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
