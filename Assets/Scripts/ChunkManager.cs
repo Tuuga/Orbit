@@ -6,6 +6,7 @@ public class ChunkManager : MonoBehaviour {
 
 	public GameObject[] chunks;
 	public GameObject chunkParent;
+	GameObject alertManager;
 	float nextChunkPos;
 	int randomInt;
 	Vector3 chunkSpot;
@@ -15,6 +16,7 @@ public class ChunkManager : MonoBehaviour {
 	public List<GameObject> chunkList;
 
 	void Awake () {
+		alertManager = GameObject.Find("AlertManager");
 		nextChunkPos = chunks[0].GetComponent<BoxCollider>().size.y;
 
 		chunkRot = new Quaternion[4];
@@ -45,6 +47,7 @@ public class ChunkManager : MonoBehaviour {
 		chunkSpot += new Vector3(0, nextChunkPos, 0);													//Next chunk spot = last spot + chunk size
 		GameObject chunkIns = (GameObject)Instantiate(chunks[randomInt], chunkSpot, chunkRot[rotInt]);	//Instantiates the next chunk
 		chunkIns.transform.parent = chunkParent.transform;												//Sets the chunk as a child of Chunks for organization
-		chunkList.Add(chunkIns);																		//Adds the new chunk to the list (as index[2])
+		chunkList.Add(chunkIns);                                                                        //Adds the new chunk to the list (as index[2])
+		alertManager.GetComponent<AlertManagerScript>().SetArrow();										//Spawns the arrows
 	}
 }

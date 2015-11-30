@@ -1,25 +1,38 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ObjectAlert : MonoBehaviour {
 
-	public GameObject planet;
+	public GameObject aObject;
 	public float arrowPosFix;
+	GameObject player;
+	public Text arrowText;
 
-	Vector3 planetPos;
-	Vector3 arrowPosition;
+	Vector3 aObjectPos;
+	Vector2 arrowPosition;
+	Vector2 aObjectScreenPos;
 
 	void Awake () {
-		//planet = transform.parent.gameObject;
+		player = GameObject.Find("Player");
 	}
 
 	void Update () {
 
-		planetPos = planet.transform.position;
+		if (aObject != null) {
+			aObjectPos = aObject.transform.position;
+			aObjectScreenPos = Camera.main.WorldToScreenPoint(aObjectPos);
 
-		Vector3 planetScreenPoint = Camera.main.WorldToScreenPoint(planetPos);
-		arrowPosition = new Vector2 (planetScreenPoint.x, Camera.main.pixelHeight + arrowPosFix);
-		transform.position = arrowPosition;
-	
+			Vector3 planetScreenPoint = Camera.main.WorldToScreenPoint(aObjectPos);
+			arrowPosition = new Vector2(planetScreenPoint.x, Camera.main.pixelHeight + arrowPosFix);
+
+			if (aObjectScreenPos.y < Camera.main.pixelHeight) {
+				Destroy(gameObject);
+			}
+			arrowText.text = "Dist: " + Vector3.Distance(player.transform.position, aObject.transform.position);
+			transform.position = arrowPosition;
+		} else {
+			Destroy(gameObject);
+		}
 	}
 }
