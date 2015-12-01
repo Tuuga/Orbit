@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: f38cda8ea92ae5d48b6d730fb124e0c9
+timeCreated: 1448968054
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: GO_top
+    21300002: GameOver_icon
+    21300004: GO_top2
+    21300006: GO_restart
+    21300008: GO_quit
+    21300010: Arrow
+    21300012: Pause_icon
+    21300014: GO_bot
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: GO_top
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1966
+        width: 1079
+        height: 336
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GameOver_icon
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1443
+        width: 982
+        height: 860
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GO_top2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1300
+        width: 1079
+        height: 600
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GO_restart
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 817
+        width: 1078
+        height: 417
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GO_quit
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 816
+        width: 1079
+        height: 418
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arrow
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 514
+        width: 214
+        height: 238
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Pause_icon
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 561
+        width: 192
+        height: 191
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: GO_bot
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 599
+        width: 1079
+        height: 152
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
