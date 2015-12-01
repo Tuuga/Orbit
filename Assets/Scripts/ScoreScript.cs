@@ -23,9 +23,11 @@ public class ScoreScript : MonoBehaviour {
 	void Update () {
 		if (comboTimerOn) {
 			comboTimer += Time.deltaTime;
-			comboText = GameObject.Find("ComboText").GetComponent<Text>();
-			comboText.text = "Combo: " + combo + "\nComboTime: " + Mathf.Round((comboTimerLimit - comboTimer));
-			if (comboTimer > comboTimerLimit) {
+			if (GameObject.Find("ComboText") != null) {
+				comboText = GameObject.Find("ComboText").GetComponent<Text>();
+				comboText.text = "Combo: " + combo + "\nComboTime: " + Mathf.Round((comboTimerLimit - comboTimer));
+			}
+			if (comboTimer > comboTimerLimit && GameObject.Find("ComboText") != null) {
 				comboTimer = 0;
 				combo = 0;
 				comboTimerOn = false;
