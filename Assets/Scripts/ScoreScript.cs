@@ -4,7 +4,7 @@ using System.Collections;
 
 public class ScoreScript : MonoBehaviour {
 
-	public float score;
+	float score;
 	float highScore;
 	float combo;
 	float comboTimer;
@@ -21,7 +21,6 @@ public class ScoreScript : MonoBehaviour {
 	}
 
 	void Update () {
-
 		if (comboTimerOn) {
 			comboTimer += Time.deltaTime;
 			comboText = GameObject.Find("ComboText").GetComponent<Text>();
@@ -36,6 +35,23 @@ public class ScoreScript : MonoBehaviour {
 		}
 	}
 
+	public void Restart () {
+		if (Application.loadedLevel == 0) {
+			score = 0;
+		}
+		combo = 0;
+		comboTimer = 0;
+		comboTimerOn = false;
+		if (GameObject.Find("ComboText") != null) {
+			comboText = GameObject.Find("ComboText").GetComponent<Text>();
+			comboText.text = "Combo: " + combo + "\nComboTime: " + Mathf.Round((comboTimerLimit - comboTimer));
+		}
+		if (GameObject.Find("ScoreUI") != null) {
+			scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
+			scoreText.text = "Score: " + score + "\nHighScore: " + highScore;
+		}
+	}
+
 	public void AddScore (float addition, float dist) {
 		combo++;
 		comboTimer = 0;
@@ -47,9 +63,13 @@ public class ScoreScript : MonoBehaviour {
 		if (highScore < score) {
 			highScore = score;
 		}
-		comboText = GameObject.Find("ComboText").GetComponent<Text>();
-		comboText.text = "Combo: " + combo + "\nComboTime: " + Mathf.Round((comboTimerLimit - comboTimer));
-		scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
-		scoreText.text = "Score: " + score + "\nHighScore: " + highScore;
+		if (GameObject.Find("ComboText") != null) {
+			comboText = GameObject.Find("ComboText").GetComponent<Text>();
+			comboText.text = "Combo: " + combo + "\nComboTime: " + Mathf.Round((comboTimerLimit - comboTimer));
+		}
+		if (GameObject.Find("ScoreUI") != null) {
+			scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
+			scoreText.text = "Score: " + score + "\nHighScore: " + highScore;
+		}
 	}
 }

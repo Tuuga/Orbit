@@ -12,7 +12,7 @@ public class ForTesting : MonoBehaviour {
 
 	void Update () {
 		Time.timeScale = time_Scale;
-
+		/*
 		if (Input.touchCount > 0) {
 			//touch positions
 			for (int i = 0; i < Input.touchCount; i++) {
@@ -22,11 +22,6 @@ public class ForTesting : MonoBehaviour {
 				debugText += ("\n Pos " + i + ":" + Input.touches[i].position + "	Touch Phase: " + Input.touches[i].phase);
 			}
 			text.text = debugText;
-		}
-	}
-
-	public void Reset () {
-		int currentScene = Application.loadedLevel;
-		Application.LoadLevel(currentScene);
+		} */
 	}
 }

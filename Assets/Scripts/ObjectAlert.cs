@@ -29,7 +29,7 @@ public class ObjectAlert : MonoBehaviour {
 			if (aObjectScreenPos.y < Camera.main.pixelHeight) {
 				Destroy(gameObject);
 			}
-			arrowText.text = "Dist: " + Mathf.Round(Vector3.Distance(player.transform.position, aObject.transform.position));
+			arrowText.text = "" + Mathf.Round(Vector3.Distance(player.transform.position, aObject.transform.position));
 			transform.position = arrowPosition;
 		} else {
 			Destroy(gameObject);

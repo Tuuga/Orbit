@@ -39,13 +39,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-
-		//Right click to stop the ship
-		if (Input.GetKey(KeyCode.Mouse1)) {
-			rb.isKinematic = true;
-		} else {
-			rb.isKinematic = false;
-		}
 		//Moves the ship forward constantly
 		rb.AddForce(transform.forward * thrustAcceleration, ForceMode.Acceleration);
 		playerDelta = transform.position - lastPos;
@@ -132,5 +125,8 @@ public class PlayerController : MonoBehaviour {
 			maxSpeedWithThrust *= gravityPassBoost;                             //Multiplies the max speed
 			thrustAcceleration *= gravityPassBoost;								//Multiplies the acceleration
 		}
+	}
+	void OnCollisionEnter (Collision c) {
+		Application.LoadLevel(1);
 	}
 }
