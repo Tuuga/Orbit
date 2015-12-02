@@ -16,13 +16,17 @@ public class SupernovaScript : MonoBehaviour {
 	void Awake () {
 		player = GameObject.Find("Player");
 		rb = gameObject.GetComponent<Rigidbody>();
-		supernovaDist = GameObject.Find("SupernovaDistance").GetComponent<Image>();
-		snIndicator = supernovaDist.color;
+		if (GameObject.Find("SupernovaDistance") != null) {
+			supernovaDist = GameObject.Find("SupernovaDistance").GetComponent<Image>();
+			snIndicator = supernovaDist.color;
+		}
 	}
 	void Update () {
 		snToPlayerDist = Vector3.Distance(transform.position, player.transform.position);
 		snToPlayerDist = Mathf.Clamp(snToPlayerDist, 0, minDist);
-		supernovaDist.color = new Color(snIndicator.r, snIndicator.g, snIndicator.b, 1 - (snToPlayerDist / 100));
+		if (supernovaDist != null) {
+			supernovaDist.color = new Color(snIndicator.r, snIndicator.g, snIndicator.b, 1 - (snToPlayerDist / 100));
+		}
 		rb.drag = snAcceleration / maxSpeed;
 	}
 

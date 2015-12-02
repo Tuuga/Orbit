@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
 	//Strength of the forward throttle
+	public float velocityCap;
 	public float maxSpeedWithThrust;
 	public float thrustAcceleration;
 	public float gravityPassBoost;
@@ -31,7 +32,9 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		transform.LookAt(Vector3.up * 10f, Vector3.back);
 		lastPos = new Vector3(0, 0, 0);
-		speedText = GameObject.Find("SpeedText").GetComponent<Text>();
+		if (GameObject.Find("SpeedText") != null) {
+			speedText = GameObject.Find("SpeedText").GetComponent<Text>();
+		}
 	}
 
 	void Start () {
@@ -41,6 +44,8 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
 		//Moves the ship forward constantly
 		rb.AddForce(transform.forward * thrustAcceleration, ForceMode.Acceleration);
+		rb.velocity = rb.velocity.normalized * Mathf.Clamp (rb.velocity.magnitude, 0, velocityCap);
+
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
 		mainCam.GetComponent<CameraScript>().CameraMovement(currentSpeed);
@@ -55,7 +60,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//Speed UI
-		speedText.text = "Units/s: " + Mathf.Round(currentSpeed) + "\n<color=red>Top Speed: " + Mathf.Round(topSpeed) + "</color>";
+		if (speedText != null) {
+			speedText.text = "Units/s: " + Mathf.Round(currentSpeed) + "\n<color=red>Top Speed: " + Mathf.Round(topSpeed) + "</color>";
+		}
 		lastPos = transform.position;
 	}
 

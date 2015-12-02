@@ -6,7 +6,7 @@ public class GameState : MonoBehaviour {
 	public GameObject playingCanvas;
 	public GameObject pauseCanvas;
 
-	void Awake () {
+	void Start () {
 		GameObject.Find("ScoreManager").GetComponent<ScoreScript>().Restart();
 	}
 
@@ -23,5 +23,8 @@ public class GameState : MonoBehaviour {
 		playingCanvas.SetActive(true);
 		pauseCanvas.SetActive(false);
 		Time.timeScale = 1;
+	}
+	public void Quit () {
+		Application.Quit();
 	}
 }
