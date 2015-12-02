@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 
 		//Speed UI
 		if (speedText != null) {
-			speedText.text = "Units/s: " + Mathf.Round(currentSpeed) + "\n<color=red>Top Speed: " + Mathf.Round(topSpeed) + "</color>";
+			//speedText.text = "Units/s: " + Mathf.Round(currentSpeed);
 		}
 		lastPos = transform.position;
 	}
@@ -128,12 +128,12 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void OnTriggerEnter (Collider c) {
-		if (c.transform.parent != null && c.transform.parent.tag == "Star") {	//If player is in a gravity source of a star
+		if (c.transform.parent != null && c.transform.parent.tag == "ObjectHasArrow") {	//If player is in a gravity source of a star
 			maxSpeedWithThrust *= gravityPassBoost;                             //Multiplies the max speed
 			thrustAcceleration *= gravityPassBoost;								//Multiplies the acceleration
 		}
 	}
 	void OnCollisionEnter (Collision c) {
-		Application.LoadLevel(1);
+		GameObject.Find("GameManager").GetComponent<GameState>().Death();
 	}
 }

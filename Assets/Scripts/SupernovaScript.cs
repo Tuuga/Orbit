@@ -6,7 +6,7 @@ public class SupernovaScript : MonoBehaviour {
 
 	public float maxSpeed;
 	public float snAcceleration;
-	public float minDist = 100f; //If player is maxDist units away from supernova, the indicator is transparent
+	public float minDist;
 	float snToPlayerDist;
 	GameObject player;
 	Color snIndicator;
