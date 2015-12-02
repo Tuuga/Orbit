@@ -24,12 +24,12 @@ public class ObjectAlert : MonoBehaviour {
 			aObjectScreenPos = Camera.main.WorldToScreenPoint(aObjectPos);
 
 			Vector3 planetScreenPoint = Camera.main.WorldToScreenPoint(aObjectPos);
-			arrowPosition = new Vector2(planetScreenPoint.x, Camera.main.pixelHeight + arrowPosFix);
+			arrowPosition = new Vector2(planetScreenPoint.x, Camera.main.pixelHeight - (Camera.main.pixelHeight / arrowPosFix));
 
 			if (aObjectScreenPos.y < Camera.main.pixelHeight) {
 				Destroy(gameObject);
 			}
-			arrowText.text = "" + Mathf.Round(Vector3.Distance(player.transform.position, aObject.transform.position));
+			arrowText.text = "" + Mathf.Round(Vector3.Distance(player.transform.position, aObject.transform.position) / 10) * 10;
 			transform.position = arrowPosition;
 		} else {
 			Destroy(gameObject);

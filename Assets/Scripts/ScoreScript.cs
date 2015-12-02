@@ -9,6 +9,7 @@ public class ScoreScript : MonoBehaviour {
 	float combo;
 	float comboTimer;
 	public float comboTimerLimit;
+	public float scorePerUnitTravelled;
 	bool comboTimerOn = false;
 	Text scoreText;
 	Text comboText;
@@ -17,7 +18,7 @@ public class ScoreScript : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		comboText = GameObject.Find("ComboText").GetComponent<Text>();
 		scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
-		scoreText.text = "Score: " + score + "\nHighScore: " + highScore;
+		scoreText.text = "Score: " + score + "\nHighScore: " + Mathf.Round(highScore);
 	}
 
 	void Update () {
@@ -50,7 +51,7 @@ public class ScoreScript : MonoBehaviour {
 		}
 		if (GameObject.Find("ScoreUI") != null) {
 			scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
-			scoreText.text = "Score: " + score + "\nHighScore: " + highScore;
+			scoreText.text = "Score: " + Mathf.Round(score) + "\nHighScore: " + Mathf.Round(highScore);
 		}
 	}
 
@@ -59,7 +60,7 @@ public class ScoreScript : MonoBehaviour {
 		comboTimer = 0;
 		comboTimerOn = true;
 
-		float toScore = Mathf.Round(addition * ((1 / (dist - 5) * 2) + 1) * combo);
+		float toScore = addition * (1 / (dist - 4) + 1) * combo;
 		score += toScore;
 
 		if (highScore < score) {
@@ -71,7 +72,20 @@ public class ScoreScript : MonoBehaviour {
 		}
 		if (GameObject.Find("ScoreUI") != null) {
 			scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
-			scoreText.text = "Score: " + score + "\nHighScore: " + highScore;
+			scoreText.text = "Score: " + Mathf.Round(score) + "\nHighScore: " + Mathf.Round(highScore);
+		}
+	}
+	public void AddTravelScore (float deltaMov) {
+		float toScore = scorePerUnitTravelled * deltaMov;
+		score += toScore;
+
+		if (highScore < score) {
+			highScore = score;
+		}
+
+		if (GameObject.Find("ScoreUI") != null) {
+			scoreText = GameObject.Find("ScoreUI").GetComponent<Text>();
+			scoreText.text = "Score: " + Mathf.Round(score) + "\nHighScore: " + Mathf.Round(highScore);
 		}
 	}
 }

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	public bool android;
 
 	public GameObject mainCam;
+	GameObject scoreManager;
 
 	Vector3 lastPos;
 	Vector3 playerDelta;
@@ -32,13 +33,14 @@ public class PlayerController : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		transform.LookAt(Vector3.up * 10f, Vector3.back);
 		lastPos = new Vector3(0, 0, 0);
-		if (GameObject.Find("SpeedText") != null) {
+        if (GameObject.Find("SpeedText") != null) {
 			speedText = GameObject.Find("SpeedText").GetComponent<Text>();
 		}
 	}
 
 	void Start () {
 		rb.velocity = Vector3.up * startSpeed;
+		scoreManager = GameObject.Find("ScoreManager");
 	}
 
 	void FixedUpdate () {
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
+		scoreManager.GetComponent<ScoreScript>().AddTravelScore(currentSpeed);
 		mainCam.GetComponent<CameraScript>().CameraMovement(currentSpeed);
 
 		
@@ -134,6 +137,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void OnCollisionEnter (Collision c) {
-		GameObject.Find("GameManager").GetComponent<GameState>().Death();
+		if (c.gameObject.tag == "ObjectHasArrow" || c.gameObject.tag == "SN") {
+			GameObject.Find("GameManager").GetComponent<GameState>().Death();
+		}
 	}
 }
