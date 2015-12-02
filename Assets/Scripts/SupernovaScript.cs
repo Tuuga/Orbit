@@ -6,6 +6,7 @@ public class SupernovaScript : MonoBehaviour {
 
 	public float maxSpeed;
 	public float snAcceleration;
+	public float snAccelerationPerTime;
 	public float minDist;
 	float snToPlayerDist;
 	GameObject player;
@@ -31,8 +32,7 @@ public class SupernovaScript : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		rb.AddForce(Vector3.up * snAcceleration, ForceMode.Acceleration);
-		//transform.position += Vector3.up * speed * Time.fixedDeltaTime;
+		rb.AddForce(Vector3.up * (snAcceleration + Time.time / snAccelerationPerTime), ForceMode.Acceleration);
 	}
 
 	void OnTriggerEnter(Collider c) {

@@ -19,12 +19,12 @@ public class Attraction : MonoBehaviour {
 
 		//Sets visual gravity radius if GravitySources parent is a star
 
-		if (gameObject.transform.parent.tag == "Star") {
+		if (gameObject.transform.parent.tag == "ObjectNoArrow") {
 			GameObject gravitySemiCircle = transform.FindChild("PlaceholderGravityRadiusHalf").gameObject;
 			GameObject gravityCircle = transform.FindChild("PlaceholderGravityRadius").gameObject;
 
 			float radius = gameObject.GetComponent<SphereCollider>().radius;
-			gravityCircle.transform.localScale = new Vector3(radius, radius, 1);
+			gravityCircle.transform.localScale = new Vector3(radius / 9.85f, radius / 9.85f, 1); //"radius / 9.85f" to compensate for 2048 resolution sprites with blank space
 			gravitySemiCircle.transform.localScale = new Vector3(radius, radius, 1);
 
 			if (oneSideGravity) {
