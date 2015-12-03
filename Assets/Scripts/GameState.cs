@@ -7,6 +7,7 @@ public class GameState : MonoBehaviour {
 	public GameObject pauseCanvas;
 	public GameObject deathCanvas;
 	public GameObject rayPlane;
+	public GameObject deathplosion;
 
 	void Start () {
 		GameObject.Find("ScoreManager").GetComponent<ScoreScript>().Restart();
@@ -34,6 +35,7 @@ public class GameState : MonoBehaviour {
 		Application.Quit();
 	}
 	public void Death () {
+		deathplosion.GetComponent<AudioSource>().Play();
 		playingCanvas.SetActive(false);
 		pauseCanvas.SetActive(false);
 		deathCanvas.SetActive(true);

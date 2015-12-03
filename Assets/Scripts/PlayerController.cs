@@ -50,7 +50,9 @@ public class PlayerController : MonoBehaviour {
 
 		playerDelta = transform.position - lastPos;
 		currentSpeed = playerDelta.magnitude / Time.deltaTime;
-		scoreManager.GetComponent<ScoreScript>().AddTravelScore(currentSpeed);
+		if (playerDelta.y > 0) {
+			scoreManager.GetComponent<ScoreScript>().AddTravelScore(currentSpeed);
+		}
 		mainCam.GetComponent<CameraScript>().CameraMovement(currentSpeed);
 
 		
@@ -132,12 +134,15 @@ public class PlayerController : MonoBehaviour {
 	}
 	void OnTriggerEnter (Collider c) {
 		if (c.transform.parent != null && c.transform.parent.tag == "ObjectHasArrow") {	//If player is in a gravity source of a star
-			maxSpeedWithThrust *= gravityPassBoost;                             //Multiplies the max speed
-			thrustAcceleration *= gravityPassBoost;								//Multiplies the acceleration
+			maxSpeedWithThrust *= gravityPassBoost;										//Multiplies the max speed
+			thrustAcceleration *= gravityPassBoost;										//Multiplies the acceleration
+		}
+		if (c.gameObject.tag == "SN") {
+			GameObject.Find("GameManager").GetComponent<GameState>().Death();
 		}
 	}
 	void OnCollisionEnter (Collision c) {
-		if (c.gameObject.tag == "ObjectHasArrow" || c.gameObject.tag == "SN") {
+		if (c.gameObject.tag == "ObjectHasArrow") {
 			GameObject.Find("GameManager").GetComponent<GameState>().Death();
 		}
 	}
